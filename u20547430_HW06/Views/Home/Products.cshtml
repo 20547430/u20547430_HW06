@@ -10,7 +10,7 @@
     <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Enter Product Name" aria-label="Search" name="searchString" autocomplete="off">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        <a href="/Book/Index" class="btn btn-success w-100">Create</a>
+        <button  id="create" type="button" data-target="#myModal" class="btn btn-success w-100">Create</button>
     </form>
 </div>
 
@@ -31,6 +31,51 @@
     </tbody>
 </table>
 
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h4 class="modal-title" id="myModalLabel">Add Product</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="Id">ID</label>
+                        <input type="text" class="form-control" id="ID" placeholder="Id" disabled="disabled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" placeholder="Name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Age">Year</label>
+                        <input type="text" class="form-control" id="Age" placeholder="Age" />
+                    </div>
+                    <div class="form-group">
+                        <label for="State">Price</label>
+                        <input type="text" class="form-control" id="State" placeholder="State" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Country">Brand</label>
+                        <input type="text" class="form-control" id="Country" placeholder="Country" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Country">Category</label>
+                        <input type="text" class="form-control" id="Country" placeholder="Country" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Add</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts {
     <script>
         $(document).ready(() => {
@@ -41,13 +86,27 @@
                 $.get({
                     url: "@Url.Action("GetProducts", "Home")",
                     success: (data) => {
-                    let productData = JSON.parse(data);
+                        let productData = JSON.parse(data);
 
-                    console.log(productData);
-                }
+                        console.log(productData);
+
+                        $("#table-body").empty();
+
+                        $(productData).each((index, element) => {
+                            $("#table-body").append(`<tr data-id="${element.Id}"><td>${element.Name}</td>
+                                                    <td>${element.Year}</td><td>${element.Price}</td>
+                                                     <td>${element.Brand}</td><td>${element.Category}</td>
+                                                     <td><a href="#" class = "btn btn-primary" onclick="return getbyID(' + item.Id + ')">Edit</a> | <a href="#" class = "btn btn-info" onclick="Details(' + item.Id + ')">Details</a>| <a href="#" class = "btn btn-danger w-100" onclick="Delele(' + item.Id + ')">Delete</a></td></tr>`);
+                        });
+                    }
                 });
             }
+
         })
+
+
     </script>
 }
+
+
 

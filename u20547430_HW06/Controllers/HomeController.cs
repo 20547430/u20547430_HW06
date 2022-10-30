@@ -22,26 +22,26 @@ namespace u20547430_HW06.Controllers
         // return object as json object
         public string GetProducts()
         {
-            db.Configuration.ProxyCreationEnabled = false;
+            db.Configuration.ProxyCreationEnabled = false; // avoid error
 
             object productData = db.products.Select(p => new {Id = p.product_id, Name= p.product_name, Year = p.model_year, Price=p.list_price,
-            Brand= p.brand, Category = p.category}).ToList();
+            Brand= p.brand.brand_name, Category = p.category.category_name}).ToList();
             return JsonConvert.SerializeObject(productData);
         }
        
 
-
-
-        public ActionResult About()
+        //add new products
+        public ActionResult AddProduct(string name, short year, decimal price, int brand, int category)
         {
-            ViewBag.Message = "Your application description page.";
+            db.products.Add(new product {product_name=name,model_year=year,list_price=price, brand_id=brand,category_id=category});
+            db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
 
-            return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your application description page.";
 
             return View();
         }
