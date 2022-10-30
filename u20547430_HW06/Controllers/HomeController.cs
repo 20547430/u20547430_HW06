@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using u20547430_HW06.Models;
-using 
+using Newtonsoft.Json;
 
 namespace u20547430_HW06.Controllers
 {
