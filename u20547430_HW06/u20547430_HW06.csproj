@@ -179,6 +179,7 @@
     <Compile Include="ViewModels\Brand.cs" />
     <Compile Include="ViewModels\Category.cs" />
     <Compile Include="ViewModels\Order.cs" />
+    <Compile Include="ViewModels\OrderVM.cs" />
     <Compile Include="ViewModels\Product.cs" />
     <Compile Include="ViewModels\ProductVM.cs" />
   </ItemGroup>

@@ -14,8 +14,20 @@ namespace u20547430_HW06.Controllers
 
         // GET: Order
         public ActionResult Index()
+
+
+        List students = dataService.GetAllStudents().ToList();
+
+        BookDetailsVM bookDetail = new BookDetailsVM
         {
-            return View();
+            book = book,
+            type = type,
+            author = author,
+            students = students,
+            borrows = borrows
+
+            return 
+        };
         }
     }
 }
