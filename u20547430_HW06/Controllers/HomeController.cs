@@ -28,17 +28,9 @@ namespace u20547430_HW06.Controllers
             Brand= p.brand.brand_name, Category = p.category.category_name}).ToList();
             return JsonConvert.SerializeObject(productData);
         }
-       
+
 
         //add new products
-        public ActionResult AddProduct(string name, short year, decimal price, int brand, int category)
-        {
-            db.products.Add(new product {product_name=name,model_year=year,list_price=price, brand_id=brand,category_id=category});
-            db.SaveChanges();
-            return Json(JsonRequestBehavior.AllowGet);
-
-        }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your application description page.";
