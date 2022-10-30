@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using u20547430_HW06.Models;
 using Newtonsoft.Json;
+using PagedList.Mvc;
+using PagedList;
 
 namespace u20547430_HW06.Controllers
 {
@@ -12,9 +14,10 @@ namespace u20547430_HW06.Controllers
     {
         private readonly BikeStoresEntities db = new BikeStoresEntities();
         
-        public ActionResult Products()
+        public ActionResult Products(string searchString, int? i)
         {
-            return View();
+            List<product> listTemp = db.products.ToList();
+            return View(db.products.Where(x => x.product_name.StartsWith(searchString)|| searchString==null).ToList().ToPagedList(i?? 1,10));
         }
 
         //get products 
@@ -31,6 +34,12 @@ namespace u20547430_HW06.Controllers
 
 
         //add new products
+        public JsonResult Add(product products)
+        {
+            db.products.Add(products);
+            db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your application description page.";
