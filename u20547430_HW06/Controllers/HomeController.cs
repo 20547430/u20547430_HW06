@@ -10,7 +10,8 @@ namespace u20547430_HW06.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        private readonly BikeStoresEntities db = new BikeStoresEntities();
+        public ActionResult Products()
         {
             return View();
         }
