@@ -7,51 +7,25 @@
 <h2>Products</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <input type="text" class="form-control flex-fill" placeholder="Enter Product Name" name="searchString" autocomplete="off">
+        </div>    <div class="form-group col-md-2">
+            <button type="submit" class="btn btn-success w-100">Search</button>
+        </div>
+        <div class="form-group col-md-2">
+            <a href="/Book/Index" class="btn btn-danger w-100">Create</a>
+        </div>
+    </div>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.product_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.model_year)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.list_price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.brand.brand_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.category.category_name)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
+<table>
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.product_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.model_year)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.list_price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.brand.brand_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.category.category_name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.product_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.product_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.product_id })
-        </td>
-    </tr>
-}
+        <th>Name</th>
+        <th>Year</th>
+        <th>Price</th>
+        <th>Brand</th>
+        <th>Category</th>
 
+    </tr>
 </table>
