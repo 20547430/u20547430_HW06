@@ -3,9 +3,6 @@
 @{
     ViewBag.Title = "Products";
 }
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 
 <h2>Products</h2>
 
@@ -37,9 +34,12 @@
 @section scripts {
     <script>
         $(document).ready(() => {
-            function GetTracks() {
+            GetProducts();
+
+
+            function GetProducts() {
                 $.get({
-                    url: "@Url.Action("GetProduct", "Home")",
+                    url: "@Url.Action("GetProducts", "Home")",
                     success: (data) => {
                     let productData = JSON.parse(data);
 
@@ -47,7 +47,7 @@
                 }
                 });
             }
-        }
+        })
     </script>
 }
 

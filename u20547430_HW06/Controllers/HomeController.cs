@@ -20,8 +20,10 @@ namespace u20547430_HW06.Controllers
         //get products 
         // use select statement 
         // return object as json object
-        public string GetProduct()
+        public string GetProducts()
         {
+            db.Configuration.ProxyCreationEnabled = false;
+
             object productData = db.products.Select(p => new {Id = p.product_id, Name= p.product_name, Year = p.model_year, Price=p.list_price,
             Brand= p.brand, Category = p.category}).ToList();
             return JsonConvert.SerializeObject(productData);
