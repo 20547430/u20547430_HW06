@@ -40,12 +40,26 @@ namespace u20547430_HW06.Controllers
             db.SaveChanges();
             return Json(JsonRequestBehavior.AllowGet);
         }
-        public ActionResult Contact()
+        public JsonResult Edit(product products)
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var data = db.products.FirstOrDefault(x => x.product_id == products.product_id);
+            if (data != null)
+            {
+                data.product_name = products.product_name;
+                data.model_year = products.model_year;
+                data.list_price = products.list_price;
+                data.brand = products.brand;
+                data.category = products.category;
+                db.SaveChanges();
+            }
+            return Json(JsonRequestBehavior.AllowGet);
         }
-
+        public JsonResult Delete(int ID)
+        {
+            var data = db.products.FirstOrDefault(x => x.product_id == ID);
+            db.products.Remove(data);
+            db.SaveChanges();
+            return Json(JsonRequestBehavior.AllowGet);
+        }
     }
 }
