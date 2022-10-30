@@ -1,4 +1,7 @@
-﻿@model IEnumerable<u20547430_HW06.Models.product>
+﻿@model IPagedList<u20547430_HW06.Models.product>
+
+@using PagedList.Mvc;
+@using PagedList;
 
 @{
     ViewBag.Title = "Products";
@@ -30,6 +33,8 @@
     <tbody id="table-body">
     </tbody>
 </table>
+
+@Html.PagedListPager(Model,i=>Url.Action("Products","Home",new {i,search=Request.QueryString["searchString"]}))
 
 <div class="AddPopUp" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
