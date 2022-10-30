@@ -18,12 +18,15 @@ namespace u20547430_HW06.Controllers
         }
 
         //get products 
-        //public string GetPlaylists()
-        //{
-        //    object playlistData = db.Playlist.Select(p => new { ID = p.PlaylistId, p.Name, Tracks = p.Track.Count }).ToList();
-
-        //    return JsonConvert.SerializeObject(playlistData);
-        //}
+        // use select statement 
+        // return object as json object
+        public string GetProduct()
+        {
+            object productData = db.products.Select(p => new {Id = p.product_id, Name= p.product_name, Year = p.model_year, Price=p.list_price,
+            Brand= p.brand, Category = p.category}).ToList();
+            return JsonConvert.SerializeObject(productData);
+        }
+       
 
 
 
