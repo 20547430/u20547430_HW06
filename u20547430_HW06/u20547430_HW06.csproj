@@ -153,6 +153,7 @@
     <Compile Include="Models\category.cs">
       <DependentUpon>BikeStoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Chart.cs" />
     <Compile Include="Models\customer.cs">
       <DependentUpon>BikeStoreModel.tt</DependentUpon>
     </Compile>
